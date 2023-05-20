@@ -1,0 +1,36 @@
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.form-field {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px 0;
+}
+.form-field input {
+  min-width: 250px;
+  text-align: start;
+  /* align-self: center; */
+}
+
+.form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form label {
+  margin-bottom: 5px;
+}
+
+.form input {
+  padding: 8px;
+}
+
+.required {
+  color: red;
+}
