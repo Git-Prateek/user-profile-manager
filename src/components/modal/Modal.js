@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Modal.css";
 import CloseIcon from "@mui/icons-material/Close";
 import { IconButton } from "@mui/material";
 import EditInfoForm from "../editInfoForm/EditInfoForm";
 
 const Modal = (props) => {
+  const [isEnabled, setIsEnabled] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,6 +13,26 @@ const Modal = (props) => {
     website: "",
   });
 
+  useEffect(() => {
+    if (
+      formData.name == "" ||
+      formData.name == null ||
+      formData.name == undefined ||
+      formData.email == "" ||
+      formData.email == null ||
+      formData.email == undefined ||
+      formData.phone == "" ||
+      formData.phone == null ||
+      formData.phone == undefined ||
+      formData.website == "" ||
+      formData.website == null ||
+      formData.website == undefined
+    ) {
+      setIsEnabled(false);
+    } else {
+      setIsEnabled(true);
+    }
+  }, [formData.name, formData.phone, formData.email, formData.website]);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -34,7 +55,7 @@ const Modal = (props) => {
     <div className="modal">
       <div className="modal-content">
         <div className="modal-header">
-          <h4>Basic Modal </h4>
+          <h4>Edit User </h4>
           <IconButton onClick={props.closeModal}>
             <CloseIcon />
           </IconButton>
@@ -54,9 +75,14 @@ const Modal = (props) => {
           >
             Cancel
           </button>
-          <button onClick={handleSubmit} className="footer-button primary">
-            OK
-          </button>
+          {isEnabled && (
+            <button
+              onClick={handleSubmit}
+              className={"footer-button primary"}
+            >
+              OK
+            </button>
+          )}
         </div>
       </div>
     </div>
